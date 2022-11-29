@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.0.0</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>org.iesvdm</groupId>
+	<artifactId>spring_boot_web_mvc_jdbc_ventas</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>spring_boot_web_mvc_jdbc_ventas</name>
+	<description>Proyecto Ventas</description>
+	<properties>
+		<!-- mínima versión de java con spring boot 3 -->
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+
+		<!-- añadimos devtools para obtener la funcionalidad de LiveReload
+		 del proyecto -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<!-- cambiar <scope> y <optional> para tarea de mvn build por solo:
+				<scope>provided</scope> -->
+			<scope>runtime</scope>
+			<!-- scope runtime indica que la dependencia (librería) sólo ha de
+			estar disponible en el entorno de ejecución (durante tiempo de ejecución) -->
+			<optional>true</optional>
+			<!-- optional a true indica que si algún módulo tiene a este como dependencia
+			(spring_boot_web_mvc_jdbc_ventas) tiene que añadir expresamente esta dependencia
+			devtools marcada como optional a true-->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- dependencia para implementar web-mvc con spring -->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<!-- dependencia para implementar vista con motor de plantillas
+			html thymeleaf y su soporte en spring web mvc -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<!-- dependencia para utilizar acceso a base de datos 
+			con estilo de sql directo sobre jdbc (JdbcTemplate) -->
+			<!-- Excluimos el Connection Pool de jdbc de tomcat, 
+			para usar el Hikari Connection Pool más veloz -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.tomcat</groupId>
+					<artifactId>tomcat-jdbc</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- añadimos el connection pool Hikari compatible con java11+, 
+			automáticamente spring boot lo cogerá en vez
+			del connection pool de tomcat que hemos excluido -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>5.0.1</version>
+			<!-- hay que aceptar el warning para compatibilidad con java11+-->
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- añadimos lombok para mayor simplificación del código -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!-- incluir cuando tarea mvn build:
+				<excludeDevtools>true</excludeDevtools> -->
+					<excludes>
+						<!-- se excluye la dependencia de lombok de la tarea mvn build-->
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
