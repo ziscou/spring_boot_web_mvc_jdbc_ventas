@@ -1,0 +1,70 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Comerciales</title>
+<style>
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+</style>
+</head>
+<body>
+<body>
+
+	<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" >
+		<div class="clearfix">
+			<div style="float: left; width: 50%">
+				<h1>Comerciales</h1>
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
+				
+				<div style="position: absolute; left: 39%; top : 39%;">
+					
+						<form action="/comerciales/crear">
+							<input type="submit" value="Crear">
+						</form>
+					</div>
+				
+			</div>
+		</div>
+		<div class="clearfix">
+			<hr/>
+		</div>
+		<div class="clearfix">
+			<div style="float: left;width: 14%">Id</div>
+			<div style="float: left;width: 14%">Nombre</div>
+			<div style="float: left;width: 14%">Apellido1</div>
+			<div style="float: left;width: 14%">Apellido2</div>
+			<div style="float: left;width: 14%">Comisión</div>
+			<div style="float: none;width: auto;overflow: hidden;">Acción</div>
+		</div>
+		<div class="clearfix">
+			<hr/>
+		</div>
+
+		<div  th:each="comercial : ${listaComerciales}" style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 14%" th:text="${comercial.id}">0</div>
+			<div style="float: left;width: 14%" th:text="${comercial.nombre}">nombre</div>
+			<div style="float: left;width: 14%" th:text="${comercial.apellido1}">apellido1</div>
+			<div style="float: left;width: 14%" th:text="${comercial.apellido2 ?: '&nbsp;'}">apellido2</div>
+			<div style="float: left;width: 14%" th:text="${comercial.comision}">comisión</div>
+			<div style="float: none;width: auto;overflow: hidden;">
+				<form th:action="@{/comerciales/__${comercial.id}__}" style="display: inline;">
+    				<input type="submit" value="Ver Detalle" />
+				</form>
+				<form th:action="@{/comerciales/editar/}+${comercial.id} " style="display: inline;">
+    				<input type="submit" value="Editar" />
+				</form>
+				<form th:action="@{/comerciales/borrar/__${comercial.}_id_}" method="post" style="display: inline;">					
+    				<input type="submit" value="Eliminar" />
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</body>
+</html>
