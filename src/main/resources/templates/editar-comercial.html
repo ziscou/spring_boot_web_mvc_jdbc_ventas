@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Detalle Comercial</title>
+<style>
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+</style>
+</head>
+<body>
+
+<div id="contenedora" style="float:none; margin: 0 auto;width: 900px;" >
+	<form  th:action="@{/comerciales/editar/__${comercial.id}__}" th:object="${comercial}" method="post" >		
+		<div class="clearfix">
+			<div style="float: left; width: 50%">
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
+				
+				<div style="position: absolute; left: 39%; top : 39%;">
+							<input type="submit" value="Guardar" />						
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="clearfix">
+			<hr/>
+		</div>
+	
+		
+		<div style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 50%">
+				<label>Código</label>
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;">
+				<input th:field="*{id}" readonly="readonly"/>
+			</div> 
+		</div>
+		<div style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 50%">
+				<label>Nombre</label>
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;">
+				<input th:field="*{nombre}"/>
+			</div> 
+		</div>
+				<div style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 50%">
+				<label>Apellido1</label>
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;">
+				<input th:field="*{apellido1}"/>
+			</div> 
+		</div>
+		<div style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 50%">
+				<label>Apellido2</label>
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;">
+				<input th:field="*{apellido2}"/>
+			</div> 
+		</div>
+		<div style="margin-top: 6px;" class="clearfix">
+			<div style="float: left;width: 50%">
+				<label>Comisión</label>
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;">
+				<input th:field="*{comision}"/>
+			</div> 
+		</div>
+			
+	</form>
+</div>
+
+</body>
+</html>
