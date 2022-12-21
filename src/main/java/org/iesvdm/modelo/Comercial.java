@@ -15,6 +15,10 @@ public class Comercial {
 	private String apellido2;
 	private Float comision;
 	
+	public Comercial() {
+		super();
+	}
+	
 	
 	
 

@@ -61,7 +61,7 @@
 				<form th:action="@{/clientes/editar/}+${cliente.id} " style="display: inline;">
     				<input type="submit" value="Editar" />
 				</form>
-				<form th:action="@{/clientes/borrar/__${cliente.}_id_}" method="post" style="display: inline;">					
+				<form th:action="@{/clientes/borrar/__${cliente.id}__}" method="post" style="display: inline;">					
     				<input type="submit" value="Eliminar" />
 				</form>
 			</div>
