@@ -56,7 +56,6 @@ public class ComercialController {
 		List<PedidoDTO> listaPedCom =  comercialService.listAllPedidoDTO(id);
 		model.addAttribute("listaPedCom", listaPedCom);
 		
-		
 		return "detalle-comercial";
 		
 	}
