@@ -21,6 +21,8 @@ public class SpringBootWebMvcJdbcVentasApplication implements CommandLineRunner{
 	private ClienteDAO clienteDAO;
 	@Autowired
 	private ComercialDAO comercialDAO;
+	@Autowired
+	private ComercialDAO PedidoDAO;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootWebMvcJdbcVentasApplication.class, args);

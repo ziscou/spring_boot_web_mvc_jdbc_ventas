@@ -2,8 +2,9 @@ package org.iesvdm.controlador;
 
 import java.util.List;
 
+import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
-import org.iesvdm.modelo.Comercial;
+import org.iesvdm.modelo.PedidoDTO;
 import org.iesvdm.service.ComercialService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +20,11 @@ import org.springframework.web.servlet.view.RedirectView;
 //Se puede fijar ruta base de las peticiones de este controlador.
 //Los mappings de los métodos tendrían este valor /comercials como
 //prefijo.
-//@RequestMapping("/comercials")
+//@RequestMapping("/comerciales")
 public class ComercialController {
+	
+	
+	
 	
 	private ComercialService comercialService;
 	
@@ -41,12 +45,17 @@ public class ComercialController {
 				
 		return "comerciales";
 		
+		
 	}
 	@GetMapping("/comerciales/{id}")
 	public String detalle(Model model, @PathVariable Integer id ) {
 		
 		Comercial comercial = comercialService.one(id);
 		model.addAttribute("comercial", comercial);
+		
+		List<PedidoDTO> listaPedCom =  comercialService.listAllPedidoDTO(id);
+		model.addAttribute("listaPedCom", listaPedCom);
+		
 		
 		return "detalle-comercial";
 		

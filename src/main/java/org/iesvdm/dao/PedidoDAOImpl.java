@@ -54,7 +54,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 			ps.setDouble(idx++, pedido.getTotal());
 			ps.setDate(idx++, pedido.getFecha());
 			ps.setInt(idx, pedido.getIdCliente());
-			ps.setInt(idx, pedido.getIdComaercial());
+			ps.setInt(idx, pedido.getIdComercial());
 			return ps;
 		},keyHolder);
 		
@@ -91,7 +91,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 	public List<PedidoDTO> getAllByComercialId(int id_comer) {
 		
 		List<PedidoDTO> listCom = jdbcTemplate.query(
-                "Select p.*, c.nombre, c.apellido1, c.apellido2 from pedido p left outer join comercial c on c.id = p.id_comercial where c.id = ?",
+                "Select p.*, ci.nombre, ci.apellido1, ci.apellido2 from pedido p left outer join comercial c on c.id = p.id_comercial left outer join cliente ci on ci.id = p.id_cliente where c.id = ?",
                 (rs, rowNum) -> new PedidoDTO(rs.getInt("id"),
                 							rs.getDouble("total"),
  											rs.getDate("fecha"),
@@ -147,8 +147,8 @@ public class PedidoDAOImpl implements PedidoDAO {
 												WHERE id = ?
 										""", pedido.getTotal()
 										, pedido.getFecha()
-										, pedido.getId_cliente()
-										, pedido.getId_comercial()
+										, pedido.getIdCliente()
+										, pedido.getIdComercial()
 										, pedido.getId());
 		
 		log.info("Update de Pedido con {} registros actualizados.", rows);
