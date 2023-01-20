@@ -11,9 +11,9 @@ public class PedidoDTO extends Pedido {
 	private String apellido1;
 	private String apellido2;
 	
-	public PedidoDTO(int id, double total, Date fecha, int idCliente, int idComaercial, String nombre, String apellido1,
+	public PedidoDTO(int id, double total, Date fecha, int idCliente, int idComercial, String nombre, String apellido1,
 			String apellido2) {
-		super(id, total, fecha, idCliente, idComaercial);
+		super(id, total, fecha, idCliente, idComercial);
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
