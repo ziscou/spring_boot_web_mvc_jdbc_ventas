@@ -166,5 +166,44 @@ public class PedidoDAOImpl implements PedidoDAO {
 		log.info("Delete de Pedido con {} registros eliminados.", rows);		
 		
 	}
+
+	@Override
+	public Double totalPedidosComercial(int id) {
+		
+		Double total = jdbcTemplate.queryForObject("Select sum(p.total) as total from pedido p left outer join comercial c on c.id = p.id_comercial where c.id = ?",
+													(rs, rowNum) -> rs.getDouble("total"), id);
+		
+		
+		return total;
+	}
+	@Override
+	public Double mediaPedidosComercial(int id) {
+		
+		Double media = jdbcTemplate.queryForObject("Select AVG(p.total) as media from pedido p left outer join comercial c on c.id = p.id_comercial where c.id = ?",
+												(rs, rowNum) -> rs.getDouble("media"), id);
+		
+		
+		return media;
+	}
+	@Override
+	public Double maximoPedidosComercial(int id) {
+		
+		Double max = jdbcTemplate.queryForObject("Select MAX(p.total) as max from pedido p left outer join comercial c on c.id = p.id_comercial where c.id = ?",
+												(rs, rowNum) -> rs.getDouble("max"), id);
+		
+		
+		return max;
+	}
+	@Override
+	public Double minimoPedidosComercial(int id) {
+		
+		Double min = jdbcTemplate.queryForObject("Select MIN(p.total) as media from pedido p left outer join comercial c on c.id = p.id_comercial where c.id = ?",
+												(rs, rowNum) -> rs.getDouble("max"), id);
+		
+		
+		return min;
+	}
+	
+	
 	
 }

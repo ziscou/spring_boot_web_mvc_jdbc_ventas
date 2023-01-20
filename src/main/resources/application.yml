@@ -2,11 +2,13 @@ logging:
   level:
     root: INFO
 spring:
+  messages:
+    encoding: ISO-8859-1 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       connection-timeout: 60000
       maximum-pool-size: 5
     password: 12345678
-    url: jdbc:mysql://localhost:3309/ventas
-    username: root
+    url: jdbc:mysql://localhost:3306/ventas
+    username: zisco

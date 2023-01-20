@@ -20,4 +20,11 @@ public interface PedidoDAO {
 	
 	public void delete(int id);
 	
+	public Double totalPedidosComercial(int id);
+	
+	public Double mediaPedidosComercial(int id);
+	
+	public Double maximoPedidosComercial(int id);
+	
+	public Double minimoPedidosComercial(int id);
 }

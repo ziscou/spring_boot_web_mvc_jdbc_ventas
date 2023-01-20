@@ -16,7 +16,7 @@ public class Comercial {
 	private Float comision;
 	
 	public Comercial() {
-		super();
+		
 	}
 	
 	

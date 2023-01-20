@@ -1,9 +1,11 @@
 package org.iesvdm.controlador;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
+import org.iesvdm.modelo.ComercialDTO;
 import org.iesvdm.modelo.PedidoDTO;
 import org.iesvdm.service.ComercialService;
 import org.springframework.stereotype.Controller;
@@ -55,6 +57,9 @@ public class ComercialController {
 		
 		List<PedidoDTO> listaPedCom =  comercialService.listAllPedidoDTO(id);
 		model.addAttribute("listaPedCom", listaPedCom);
+		
+		ComercialDTO comercialDto = comercialService.estadisticas(comercialService.one(id));
+		model.addAttribute("comercialDto", comercialDto);
 		
 		return "detalle-comercial";
 		
