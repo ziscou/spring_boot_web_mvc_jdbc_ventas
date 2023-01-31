@@ -1,8 +1,13 @@
 package org.iesvdm.service;
 
+import static java.util.Comparator.comparing;
+
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.iesvdm.dao.ComercialDAO;
 import org.iesvdm.dao.PedidoDAO;
@@ -66,12 +71,19 @@ public class ComercialService {
 		
 		Double total =  pedidoDAO.totalPedidosComercial(com.getId());
 		BigDecimal media = new BigDecimal(pedidoDAO.mediaPedidosComercial(com.getId()));
+		media = media.setScale(2, RoundingMode.HALF_UP);
 		Double max =  pedidoDAO.maximoPedidosComercial(com.getId());
 		Double min =  pedidoDAO.minimoPedidosComercial(com.getId());
 		
 		
 		ComercialDTO comDto = new ComercialDTO(total,media,max,min,com);
 		return comDto;
+		
+	}
+	public List<PedidoDTO> listaOrdenada( List<PedidoDTO> lista){
+		
+		List<PedidoDTO>  listaOrd = lista.stream().sorted(comparing(PedidoDTO::getTotal).reversed()).distinct().collect(Collectors.toList());
+		return listaOrd;
 		
 	}
 	

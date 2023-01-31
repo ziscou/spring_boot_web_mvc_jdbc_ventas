@@ -110,6 +110,28 @@ public class PedidoDAOImpl implements PedidoDAO {
 	}
 
 	/**
+	 * Devuelve lista con todos loa Pedidos de un Comercial.
+	 */
+	@Override
+	public List<Pedido> getAllByClienteId(int id_client) {
+		
+		List<Pedido> listCom = jdbcTemplate.query(
+                "Select p.* from pedido p left outer join cliente c on c.id = p.id_cliente where c.id = ?",
+                (rs, rowNum) -> new Pedido(rs.getInt("id"),
+                							rs.getDouble("total"),
+ 											rs.getDate("fecha"),
+ 											rs.getInt("id_cliente"),
+ 											rs.getInt("id_comercial"))
+                						,id_client
+        );
+		
+		log.info("Devueltos {} registros.", listCom.size());
+		
+        return listCom;
+        
+	}
+
+	/**
 	 * Devuelve Optional de Pedido con el ID dado.
 	 */
 	@Override
@@ -197,8 +219,8 @@ public class PedidoDAOImpl implements PedidoDAO {
 	@Override
 	public Double minimoPedidosComercial(int id) {
 		
-		Double min = jdbcTemplate.queryForObject("Select MIN(p.total) as media from pedido p left outer join comercial c on c.id = p.id_comercial where c.id = ?",
-												(rs, rowNum) -> rs.getDouble("max"), id);
+		Double min = jdbcTemplate.queryForObject("Select MIN(p.total) as min from pedido p left outer join comercial c on c.id = p.id_comercial where c.id = ?",
+												(rs, rowNum) -> rs.getDouble("min"), id);
 		
 		
 		return min;

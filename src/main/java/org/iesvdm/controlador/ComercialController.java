@@ -1,5 +1,7 @@
 package org.iesvdm.controlador;
 
+import static java.util.Comparator.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -57,6 +59,9 @@ public class ComercialController {
 		
 		List<PedidoDTO> listaPedCom =  comercialService.listAllPedidoDTO(id);
 		model.addAttribute("listaPedCom", listaPedCom);
+		
+		List<PedidoDTO> listaPedComOrd =  comercialService.listaOrdenada(listaPedCom);
+		model.addAttribute("listaPedComOrd", listaPedComOrd);
 		
 		ComercialDTO comercialDto = comercialService.estadisticas(comercialService.one(id));
 		model.addAttribute("comercialDto", comercialDto);

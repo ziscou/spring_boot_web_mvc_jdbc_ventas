@@ -1,9 +1,12 @@
 package org.iesvdm.controlador;
 
 import java.util.List;
+import java.util.Map;
 
 import org.iesvdm.modelo.Cliente;
+import org.iesvdm.modelo.Comercial;
 import org.iesvdm.service.ClienteService;
+import org.iesvdm.service.ClienteService.VectorStats;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +49,11 @@ public class ClienteController {
 		
 		Cliente cliente = clienteService.one(id);
 		model.addAttribute("cliente", cliente);
+		
+		Map<Comercial, VectorStats> mapComStats = clienteService.estadisticasPedidosClientePorComercial(id);
+		model.addAttribute("mapComStats",mapComStats);
+		
+	
 		
 		return "detalle-cliente";
 		
