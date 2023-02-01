@@ -3,7 +3,9 @@ package org.iesvdm.controlador;
 import java.util.List;
 import java.util.Map;
 
+import org.iesvdm.mapper.ClienteMapper;
 import org.iesvdm.modelo.Cliente;
+import org.iesvdm.modelo.ClienteDTO;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.service.ClienteService;
 import org.iesvdm.service.ClienteService.VectorStats;
@@ -25,12 +27,14 @@ import org.springframework.web.servlet.view.RedirectView;
 public class ClienteController {
 	
 	private ClienteService clienteService;
+	private ClienteMapper clienteMapper;
 	
 	//Se utiliza inyección automática por constructor del framework Spring.
 	//Por tanto, se puede omitir la anotación Autowired
 	//@Autowired
-	public ClienteController(ClienteService clienteService) {
+	public ClienteController(ClienteService clienteService,ClienteMapper clienteMapper) {
 		this.clienteService = clienteService;
+		this.clienteMapper = clienteMapper;
 	}
 	
 	//@RequestMapping(value = "/clientes", method = RequestMethod.GET)
@@ -47,12 +51,14 @@ public class ClienteController {
 	@GetMapping("/clientes/{id}")
 	public String detalle(Model model, @PathVariable Integer id ) {
 		
-		Cliente cliente = clienteService.one(id);
-		model.addAttribute("cliente", cliente);
-		
 		Map<Comercial, VectorStats> mapComStats = clienteService.estadisticasPedidosClientePorComercial(id);
-		model.addAttribute("mapComStats",mapComStats);
+		Cliente cliente = clienteService.one(id);
 		
+		ClienteDTO clienteDTO = clienteMapper.clienteAClienteDTO(cliente, mapComStats);
+		
+		model.addAttribute("cliente", clienteDTO);
+		
+
 	
 		
 		return "detalle-cliente";

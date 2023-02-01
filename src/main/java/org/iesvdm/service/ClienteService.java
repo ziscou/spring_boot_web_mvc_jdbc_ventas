@@ -113,12 +113,10 @@ public class ClienteService {
 			mapComerciales.values().stream().sorted(comp
 					.thenComparing((o1, o2) -> o1.getApellido1().compareTo(o2.getApellido1()))
 					.thenComparing((o1, o2) -> o1.getApellido2().compareTo(o2.getApellido2()))).forEach(com -> mapComStats.put(com, 
-							new VectorStats( mapStatisticsTrimestre.get(com).getCount(),
-									mapStatisticsSemestre.get(com).getCount(),
-									mapStatisticsAnio.get(com).getCount(),
-									mapStatisticsLustro.get(com).getCount())));
-       
-		
+							new VectorStats( (mapStatisticsTrimestre.get(com) != null)? mapStatisticsTrimestre.get(com).getCount():0,
+									(mapStatisticsSemestre.get(com) != null)?mapStatisticsSemestre.get(com).getCount():0,
+									(mapStatisticsAnio.get(com) != null)?mapStatisticsAnio.get(com).getCount():0,
+									(mapStatisticsLustro.get(com) != null)?mapStatisticsLustro.get(com).getCount():0)));
 		return mapComStats;
 		
 	}

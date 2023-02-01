@@ -102,14 +102,14 @@
 				
 			</div>
 			<hr/>
-			<div th:each="map :${mapComStats}" style="margin-top: 6px; text-align:center;" class="clearfix" >
+			<div th:each="map :${cliente.mapComStats}" style="margin-top: 6px; text-align:center;" class="clearfix" >
 			
 				<div style="float: left;width: 10%"  th:text="${map.key.id}">0</div>
 				<a style=" float: left;width: 20%;" th:href="@{http://localhost:8080/comerciales/}+${map.key.id}"  th:text="${map.key.nombre}+' '+${map.key.apellido1}"> 0 </a>
 				<div style="float: left;width: 10%"  th:text="${map.value.trim != null ? map.value.trim : '0' }">0</div>
-				<div style="float: left;width: 10%"  th:text="${map.value.trim != null ? map.value.sem : '0' }">0</div>
-				<div style="float: left;width: 10%"  th:text="${map.value.trim != null ? map.value.anio : '0' }">0</div>
-				<div style="float: left;width: 10%"  th:text="${map.value.trim != null ? map.value.lustro : '0' }">0</div>
+				<div style="float: left;width: 10%"  th:text="${map.value.sem != null ? map.value.sem : '0' }">0</div>
+				<div style="float: left;width: 10%"  th:text="${map.value.anio != null ? map.value.anio : '0' }">0</div>
+				<div style="float: left;width: 10%"  th:text="${map.value.lustro != null ? map.value.lustro : '0' }">0</div>
 			
 				
 			</div>
