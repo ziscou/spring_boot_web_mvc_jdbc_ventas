@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Detalle Comerciale</title>
+<title>Crear Comerciale</title>
 <style>
 .clearfix::after {
 	content: "";
@@ -18,12 +18,12 @@
 	<form th:action="@{/comerciales/crear}" th:object="${comercial}" method="post">
 		<div class="clearfix">
 			<div style="float: left; width: 50%">
-				<h1>Crear Comerciale</h1>
+				<h1 th:text="#{crear.comercial}">Crear Comercial</h1>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
 				
 				<div style="position: absolute; left: 39%; top : 39%;">								
-					<input type="submit" value="Crear"/>					
+					<input type="submit" value="Crear" th:value="#{crear}"/>					
 				</div>
 				
 			</div>
@@ -34,7 +34,7 @@
 		</div>
 		
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 50%">
+			<div style="float: left;width: 50%" th:text="#{nombre}">
 				Nombre
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
@@ -43,7 +43,7 @@
 		</div>
 		
 		<div style="margin-top: 3px;" class="clearfix">
-			<div style="float: left;width: 50%">
+			<div style="float: left;width: 50%" th:text="#{apellido1}">
 				Apellido1
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
@@ -51,7 +51,7 @@
 			</div> 
 		</div>
 		<div style="margin-top: 3px;" class="clearfix">
-			<div style="float: left;width: 50%">
+			<div style="float: left;width: 50%" th:text="#{apellido2}">
 				Apellido2
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
@@ -59,7 +59,7 @@
 			</div> 
 		</div>
 		<div style="margin-top: 3px;" class="clearfix">
-			<div style="float: left;width: 50%">
+			<div style="float: left;width: 50%" th:text="#{comision}">
 				Comisión
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">

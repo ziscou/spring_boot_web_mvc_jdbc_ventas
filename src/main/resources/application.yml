@@ -10,5 +10,5 @@ spring:
       connection-timeout: 60000
       maximum-pool-size: 5
     password: 12345678
-    url: jdbc:mysql://localhost:3306/ventas
-    username: zisco
+    url: jdbc:mysql://localhost:3309/ventas
+    username: root

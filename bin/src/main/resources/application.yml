@@ -2,6 +2,8 @@ logging:
   level:
     root: INFO
 spring:
+  messages:
+    encoding: ISO-8859-1 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:

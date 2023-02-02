@@ -9,6 +9,9 @@
 	display: block;
 	clear: both;
 }
+.error {
+	color: red;
+}
 
 </style>
 </head>
@@ -39,6 +42,9 @@
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:field="*{nombre}" />
+				<ul th:if="${#fields.hasErrors('nombre')}">
+        			     <li th:each="err : ${#fields.errors('nombre')}" th:text="${err}" class="error" />
+    			</ul>
 			</div> 
 		</div>
 		<div style="margin-top: 3px;" class="clearfix">
@@ -47,6 +53,9 @@
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:field="*{apellido1}" />
+				<ul th:if="${#fields.hasErrors('apellido1')}">
+        			     <li th:each="err : ${#fields.errors('apellido1')}" th:text="${err}" class="error" />
+    			</ul>
 			</div> 
 		</div>
 				<div style="margin-top: 3px;" class="clearfix">
@@ -63,6 +72,9 @@
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:field="*{ciudad}" />
+				<ul th:if="${#fields.hasErrors('ciudad')}">
+        			     <li th:each="err : ${#fields.errors('ciudad')}" th:text="${err}" class="error" />
+    			</ul>
 			</div> 
 		</div>
 		<div style="margin-top: 3px;" class="clearfix">
@@ -71,6 +83,7 @@
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:field="*{categoria}" />
+				<p th:if="${#fields.hasErrors('categoria')}" th:errorclass="error" th:errors="*{categoria}" />
 			</div> 
 		</div>
 

@@ -118,7 +118,7 @@
 		</resources>
 
 		<plugins>
-			<plugin>
+				<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -154,7 +154,7 @@
 <!--				<groupId>org.springframework.boot</groupId>-->
 <!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
 <!--				<configuration>-->
-<!--					incluir cuando tarea mvn build:-->
+<!--					 incluir cuando tarea mvn build:-->
 <!--				<excludeDevtools>true</excludeDevtools> -->
 <!--					<excludes>-->
 <!--						 se excluye la dependencia de lombok de la tarea mvn build-->

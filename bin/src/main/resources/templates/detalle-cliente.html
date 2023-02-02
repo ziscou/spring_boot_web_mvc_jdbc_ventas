@@ -17,14 +17,14 @@
 <div id="contenedora" style="float:none; margin: 0 auto;width: 900px;" >
 		<div class="clearfix">
 			<div style="float: left; width: 50%">
-				<h1>Detalle Cliente</h1>
+				<h1 th:text="#{detalle.cliente}">Detalle Cliente</h1>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
 				
 				<div style="position: absolute; left: 39%; top : 39%;">
 					
 						<form action="/clientes" >
-							<input type="submit" value="Volver" />
+							<input type="submit" value="Volver" th:value="#{volver}"/>
 						</form>
 					</div>
 				
@@ -37,7 +37,7 @@
 
 		<div style="margin-top: 6px;" class="clearfix">
 			<div style="float: left;width: 50%">
-				<label>Código</label>
+				<label th:text="#{codigo}">Código</label>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:value="${cliente.id}" value="Código" readonly="readonly"/>
@@ -45,7 +45,7 @@
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
 			<div style="float: left;width: 50%">
-				<label>Nombre</label>
+				<label th:text="#{nombre}">Nombre</label>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:value="${cliente.nombre}" value="Cliente" readonly="readonly"/>
@@ -53,7 +53,7 @@
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
 			<div style="float: left;width: 50%">
-				<label>Apellido1</label>
+				<label th:text="#{apellido1}">Apellido1</label>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:value="${cliente.apellido1}" value="Cliente" readonly="readonly"/>
@@ -61,7 +61,7 @@
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
 			<div style="float: left;width: 50%">
-				<label>Apellido2</label>
+				<label th:text="#{apellido2}">Apellido2</label>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:value="${cliente.apellido2}" value="Cliente" readonly="readonly"/>
@@ -69,7 +69,7 @@
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
 			<div style="float: left;width: 50%">
-				<label>Ciudad</label>
+				<label th:text="#{ciudad}">Ciudad</label>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:value="${cliente.ciudad}" value="Cliente" readonly="readonly"/>
@@ -77,11 +77,42 @@
 		</div>
 		<div style="margin-top: 6px;" class="clearfix">
 			<div style="float: left;width: 50%">
-				<label>Categoria</label>
+				<label th:text="#{categoria}">Categoria</label>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<input th:value="${cliente.categoria}" value="Cliente" readonly="readonly"/>
 			</div> 
+		</div>
+		
+		<div class="clearfix">
+			<h3> Litado Comerciales con Numero Pedidos </h3>
+			<hr/>
+		</div>
+
+		<div style="margin-top: 6px;" class="clearfix">
+		
+			<div style="text-align:center;width: 100%" class="clearfix">
+			
+				<div style="float: left;width: 10%"  >Id</div>
+				<div style="float: left;width: 20%"  >Nombre</div>
+				<div style="float: left;width: 10%"  >Trimestre</div>
+				<div style="float: left;width: 10%"  >Semestre</div>
+				<div style="float: left;width: 10%"  >Año</div>
+				<div style="float: left;width: 10%"  >Lustro</div>
+				
+			</div>
+			<hr/>
+			<div th:each="map :${cliente.mapComStats}" style="margin-top: 6px; text-align:center;" class="clearfix" >
+			
+				<div style="float: left;width: 10%"  th:text="${map.key.id}">0</div>
+				<a style=" float: left;width: 20%;" th:href="@{http://localhost:8080/comerciales/}+${map.key.id}"  th:text="${map.key.nombre}+' '+${map.key.apellido1}"> 0 </a>
+				<div style="float: left;width: 10%"  th:text="${map.value.trim != null ? map.value.trim : '0' }">0</div>
+				<div style="float: left;width: 10%"  th:text="${map.value.sem != null ? map.value.sem : '0' }">0</div>
+				<div style="float: left;width: 10%"  th:text="${map.value.anio != null ? map.value.anio : '0' }">0</div>
+				<div style="float: left;width: 10%"  th:text="${map.value.lustro != null ? map.value.lustro : '0' }">0</div>
+			
+				
+			</div>
 		</div>
 
 </div>

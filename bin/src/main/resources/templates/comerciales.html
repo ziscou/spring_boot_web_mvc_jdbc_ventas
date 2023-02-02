@@ -18,16 +18,16 @@
 	<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" >
 		<div class="clearfix">
 			<div style="float: left; width: 50%">
-				<h1>Comerciales</h1>
+				<h1 th:text="#{comerciales}">Comerciales</h1>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
 				
 				<div style="position: absolute; left: 39%; top : 39%;">
 					
 						<form action="/comerciales/crear">
-							<input type="submit" value="Crear">
+							<input type="submit" th:value="#{crear}" value="Crear">
 						</form>
-					</div>
+					</div> 
 				
 			</div>
 		</div>
@@ -36,11 +36,11 @@
 		</div>
 		<div class="clearfix">
 			<div style="float: left;width: 14%">Id</div>
-			<div style="float: left;width: 14%">Nombre</div>
-			<div style="float: left;width: 14%">Apellido1</div>
-			<div style="float: left;width: 14%">Apellido2</div>
-			<div style="float: left;width: 14%">Comisión</div>
-			<div style="float: none;width: auto;overflow: hidden;">Acción</div>
+			<div style="float: left;width: 14%" th:text="#{nombre}">Nombre</div>
+			<div style="float: left;width: 14%" th:text="#{apellido1}">Apellido1</div>
+			<div style="float: left;width: 14%" th:text="#{apellido2}" >Apellido2</div>
+			<div style="float: left;width: 14%" th:text="#{comision}">Comisión</div>
+			<div style="float: none;width: auto;overflow: hidden;" th:text="#{accion}">Acción</div>
 		</div>
 		<div class="clearfix">
 			<hr/>
@@ -54,13 +54,13 @@
 			<div style="float: left;width: 14%" th:text="${comercial.comision}">comisión</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<form th:action="@{/comerciales/__${comercial.id}__}" style="display: inline;">
-    				<input type="submit" value="Ver Detalle" />
+    				<input type="submit" value="Ver Detalle" th:value="#{detalle}" />
 				</form>
 				<form th:action="@{/comerciales/editar/}+${comercial.id} " style="display: inline;">
-    				<input type="submit" value="Editar" />
+    				<input type="submit" value="Editar" th:value="#{editar}" />
 				</form>
 				<form th:action="@{/comerciales/borrar/__${comercial.id}__}" method="post" style="display: inline;">					
-    				<input type="submit" value="Eliminar" />
+    				<input type="submit" value="Eliminar" th:value="#{eliminar}" />
 				</form>
 			</div>
 		</div>

@@ -13,6 +13,9 @@ public class Comercial {
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
+	
+	//@DecimalMax(value=, inclusive=true)
+	//@DecimalMin(value=, inclusive=true)
 	private Float comision;
 	
 	public Comercial() {
