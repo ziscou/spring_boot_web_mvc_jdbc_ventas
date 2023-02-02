@@ -3,6 +3,7 @@ package org.iesvdm.controlador;
 import java.util.List;
 import java.util.Map;
 
+import org.iesvdm.exception.MiExcepcion;
 import org.iesvdm.mapper.ClienteMapper;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.ClienteDTO;
@@ -123,7 +124,16 @@ public class ClienteController {
 		return new RedirectView("/clientes");
 	}
 	
-	
+	@GetMapping("/demoth-runtime-excepcion")
+	public String demothRuntimeException() {
+	throw new RuntimeException("Prueba de lanzamiento de excepción y manejo por ControllerAdvice...");
+
+	}
+	@GetMapping("/demoth-mi-excepcion")
+	public String demothMiExcepcion() throws MiExcepcion {
+	throw new MiExcepcion();
+
+	}
 	
 	
 	
